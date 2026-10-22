@@ -13,7 +13,7 @@ interface ContactFormProps {
 const labelStyles = "eyebrow block text-white/60";
 
 const fieldStyles =
-  "mt-2 block w-full border-0 border-b border-white/30 bg-transparent px-0 py-3 text-lg text-white placeholder:text-white/30 transition-colors outline-none focus:border-gold";
+  "mt-2 block w-full border-0 border-b border-white/30 bg-transparent px-0 py-3 font-sans text-lg tracking-normal normal-case text-white placeholder:text-white/30 transition-colors outline-none focus:border-gold";
 
 // No backend yet: hands the message to the visitor's email app.
 // Replace handleSubmit with an API call once a backend exists.

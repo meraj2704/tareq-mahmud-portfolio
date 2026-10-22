@@ -19,6 +19,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 import { cn } from "@/lib/cn";
+import { pad2 } from "@/lib/format";
 
 interface NavbarProps {
   brand: string;
@@ -268,7 +269,7 @@ function MobileMenu({
                     )}
                   >
                     <span className="eyebrow w-6 shrink-0 text-gold">
-                      {String(index + 1).padStart(2, "0")}
+                      {pad2(index + 1)}
                     </span>
                     <span className="font-display text-[clamp(2rem,9vw,2.75rem)] leading-[1.1] font-light tracking-[-0.02em] text-white transition-colors group-active:text-gold">
                       {item.label}

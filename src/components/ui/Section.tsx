@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import type { SectionHeading, SectionId } from "@/data/content";
 import { cn } from "@/lib/cn";
+import { pad2 } from "@/lib/format";
 import { Container } from "./Container";
 import { FadeIn } from "./FadeIn";
 import { RevealText } from "./RevealText";
@@ -33,7 +34,7 @@ export function Section({
   display = false,
   children,
 }: SectionProps) {
-  const number = String(SECTION_ORDER.indexOf(id) + 1).padStart(2, "0");
+  const number = pad2(SECTION_ORDER.indexOf(id) + 1);
   const dark = tone === "ink";
 
   return (

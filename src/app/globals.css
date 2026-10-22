@@ -48,11 +48,14 @@
 
 :root {
   --gutter: 1.25rem;
+  /* Sticky navbar: h-14 / sm:h-16 in Navbar.tsx. */
+  --navbar-height: 3.5rem;
 }
 
 @media (width >= 40rem) {
   :root {
     --gutter: 2rem;
+    --navbar-height: 4rem;
   }
 }
 
@@ -63,7 +66,8 @@
 }
 
 html {
-  scroll-padding-top: calc(4rem + env(safe-area-inset-top));
+  /* Navbar height plus its 1px border. */
+  scroll-padding-top: calc(var(--navbar-height) + 1px + env(safe-area-inset-top));
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;

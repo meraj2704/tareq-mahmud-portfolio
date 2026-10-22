@@ -1,6 +1,7 @@
 import type { SiteContent } from "@/data/content";
 import { Ledger, LedgerRow } from "@/components/ui/Ledger";
 import { Section } from "@/components/ui/Section";
+import { pad2 } from "@/lib/format";
 
 export function Certifications({
   content,
@@ -15,7 +16,7 @@ export function Certifications({
             key={item.title}
             aside={
               <p className="eyebrow text-slate">
-                {String(index + 1).padStart(2, "0")}
+                {pad2(index + 1)}
               </p>
             }
             trailing={<p className="eyebrow text-ink">{item.year}</p>}

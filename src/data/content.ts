@@ -13,17 +13,7 @@ export type SectionId =
   | "research"
   | "contact";
 
-export type IconName =
-  | "ledger"
-  | "office"
-  | "data"
-  | "document"
-  | "chat"
-  | "search"
-  | "mail"
-  | "phone"
-  | "whatsapp"
-  | "location";
+export type IconName = "mail" | "phone" | "whatsapp" | "location";
 
 export interface ImageAsset {
   src: string;
@@ -59,7 +49,6 @@ export interface EducationItem {
 
 export interface SkillGroup {
   title: string;
-  icon: IconName;
   items: string[];
 }
 
@@ -134,6 +123,11 @@ export interface SiteContent {
     name: string;
     tagline: string;
     rights: string;
+    credit: {
+      prefix: string;
+      label: string;
+      href: string;
+    };
   };
 }
 
@@ -250,7 +244,6 @@ const en: SiteContent = {
     groups: [
       {
         title: "Accounting & Records",
-        icon: "ledger",
         items: [
           "Bookkeeping",
           "Ledgers & cash books",
@@ -260,27 +253,22 @@ const en: SiteContent = {
       },
       {
         title: "MS Office",
-        icon: "office",
         items: ["Excel", "Word", "PowerPoint"],
       },
       {
         title: "Data Management",
-        icon: "data",
         items: ["Excel record keeping", "Data entry & accuracy", "Daily reporting"],
       },
       {
         title: "Documentation",
-        icon: "document",
         items: ["Financial documentation", "Filing & organization", "Client files"],
       },
       {
         title: "Communication",
-        icon: "chat",
         items: ["Client coordination", "Agency liaison", "Spoken English"],
       },
       {
         title: "Research",
-        icon: "search",
         items: ["Academic research", "Literature review", "Data analysis"],
       },
     ],
@@ -342,6 +330,11 @@ const en: SiteContent = {
     name: "Tareq Mahmud",
     tagline: "Accountant · Dhaka",
     rights: "All rights reserved.",
+    credit: {
+      prefix: "Designed & developed by",
+      label: "SoftOnli Tech",
+      href: "https://softonlitech.com?utm_source=tareqmahmud&utm_medium=footer&utm_campaign=client_credit",
+    },
   },
 };
 

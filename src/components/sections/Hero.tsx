@@ -26,7 +26,7 @@ export function Hero({ content }: { content: SiteContent["hero"] }) {
               as="h1"
               text={name}
               stacked
-              className="font-display mt-5 text-[clamp(2.75rem,13.9vw,3.75rem)] leading-[0.86] font-light tracking-[-0.03em] hyphens-none text-ink sm:mt-8 sm:text-[clamp(4.5rem,13vw,8rem)]"
+              className="font-display mt-5 text-[clamp(2.75rem,13.9vw,3.75rem)] leading-[0.86] font-light tracking-[-0.03em] hyphens-none text-ink sm:mt-8 sm:text-[clamp(4.5rem,13vw,7.5rem)] lg:text-[8rem]"
             />
             <FadeIn delay={0.3} className="mt-8 max-w-md sm:mt-12">
               <p className="font-display text-3xl font-normal text-ink italic sm:text-4xl">

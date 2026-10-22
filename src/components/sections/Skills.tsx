@@ -2,6 +2,7 @@ import type { SiteContent } from "@/data/content";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { Rule } from "@/components/ui/Rule";
 import { Section } from "@/components/ui/Section";
+import { pad2 } from "@/lib/format";
 
 export function Skills({ content }: { content: SiteContent["skills"] }) {
   return (
@@ -17,7 +18,7 @@ export function Skills({ content }: { content: SiteContent["skills"] }) {
                     {group.title}
                   </h3>
                   <span className="eyebrow text-slate">
-                    {String(index + 1).padStart(2, "0")}
+                    {pad2(index + 1)}
                   </span>
                 </div>
                 <ul className="divide-y divide-mist border-t border-mist">

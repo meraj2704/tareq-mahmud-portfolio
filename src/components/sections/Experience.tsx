@@ -3,6 +3,7 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import { Ledger, LedgerRow } from "@/components/ui/Ledger";
 import { Photo } from "@/components/ui/Photo";
 import { Section } from "@/components/ui/Section";
+import { pad2 } from "@/lib/format";
 
 export function Experience({
   content,
@@ -37,7 +38,7 @@ export function Experience({
                   className="grid grid-cols-[2rem_1fr] py-3 leading-relaxed sm:grid-cols-[2.5rem_1fr]"
                 >
                   <span className="eyebrow pt-0.5 text-slate">
-                    {String(index + 1).padStart(2, "0")}
+                    {pad2(index + 1)}
                   </span>
                   {line}
                 </li>

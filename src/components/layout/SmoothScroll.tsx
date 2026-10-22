@@ -80,6 +80,8 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       easing: easeOutExpo,
       smoothWheel: true,
       syncTouch: false,
+      // Lets the message textarea scroll its own text.
+      allowNestedScroll: true,
     });
     lenis.current = instance;
 
