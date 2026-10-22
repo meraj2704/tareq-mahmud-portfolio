@@ -3,6 +3,7 @@
 import { animate, useInView } from "framer-motion";
 import { Fragment, useEffect, useRef } from "react";
 import { cn } from "@/lib/cn";
+import { MOBILE_QUERY } from "@/lib/useIsMobile";
 
 interface RevealTextProps {
   text: string;
@@ -16,8 +17,11 @@ interface RevealTextProps {
 
 const HIGHLIGHT = /^(.*?)\*(.+?)\*(.*)$/;
 
+// On mobile, headings that wrap past this many lines fade in as one block.
+const MAX_MASKED_LINES = 2;
+
 // Reveals a heading line by line from behind a mask. Wrap one word in
-// *asterisks* to set it in italic.
+// *asterisks* to set it in italic. Mobile gets a quicker, lighter reveal.
 export function RevealText({
   text,
   as: Tag = "h2",
@@ -36,22 +40,40 @@ export function RevealText({
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
+    const mobile = window.matchMedia(MOBILE_QUERY).matches;
+    const masks = Array.from(
+      heading.querySelectorAll<HTMLElement>("[data-mask]"),
+    );
+    const words = masks.map((mask) => mask.firstElementChild as HTMLElement);
     let line = -1;
     let lineTop = Number.NEGATIVE_INFINITY;
 
     // Words sharing an offsetTop sit on the same rendered line.
-    heading.querySelectorAll<HTMLElement>("[data-mask]").forEach((mask) => {
+    const lines = masks.map((mask) => {
       if (mask.offsetTop > lineTop + 2) {
         line += 1;
         lineTop = mask.offsetTop;
       }
-      const word = mask.firstElementChild as HTMLElement;
+      return line;
+    });
+
+    if (mobile && !reduceMotion && line + 1 > MAX_MASKED_LINES) {
+      words.forEach((word) => (word.style.transform = "none"));
+      animate(
+        heading,
+        { opacity: [0, 1], y: [12, 0] },
+        { duration: 0.4, ease: "easeOut" },
+      );
+      return;
+    }
+
+    words.forEach((word, index) => {
       animate(
         word,
         { y: "0%" },
         {
-          duration: reduceMotion ? 0 : 0.6,
-          delay: reduceMotion ? 0 : line * 0.1,
+          duration: reduceMotion ? 0 : mobile ? 0.4 : 0.6,
+          delay: reduceMotion ? 0 : lines[index] * (mobile ? 0.08 : 0.1),
           ease: "easeOut",
         },
       );

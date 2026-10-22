@@ -15,7 +15,12 @@ export default function Home() {
 
   return (
     <>
-      <Navbar brand={content.hero.name} content={content.nav} />
+      <Navbar
+        brand={content.hero.name}
+        content={content.nav}
+        channels={content.contact.channels}
+        cv={content.hero.primaryCta}
+      />
       <main>
         <Hero content={content.hero} />
         <About content={content.about} />

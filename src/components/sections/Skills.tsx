@@ -7,7 +7,7 @@ export function Skills({ content }: { content: SiteContent["skills"] }) {
   return (
     <Section id="skills" heading={content}>
       <div className="md:grid md:grid-cols-12 md:gap-x-8">
-        <div className="grid gap-x-12 gap-y-14 sm:grid-cols-2 md:col-span-9 md:col-start-4">
+        <div className="grid gap-x-12 gap-y-10 sm:grid-cols-2 sm:gap-y-14 md:col-span-9 md:col-start-4">
           {content.groups.map((group, index) => (
             <div key={group.title}>
               <Rule className="bg-ink" delay={(index % 2) * 0.08} />

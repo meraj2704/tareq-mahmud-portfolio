@@ -10,7 +10,7 @@ export function Container({
 }) {
   return (
     <div
-      className={cn("mx-auto w-full container px-5 sm:px-8 lg:px-12", className)}
+      className={cn("gutter mx-auto w-full container", className)}
     >
       {children}
     </div>

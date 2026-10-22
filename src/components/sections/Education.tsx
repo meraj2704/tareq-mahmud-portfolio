@@ -22,7 +22,7 @@ export function Education({ content }: { content: SiteContent["education"] }) {
               </p>
             }
           >
-            <h3 className="font-display text-3xl leading-tight text-ink sm:text-4xl">
+            <h3 className="font-display text-[1.75rem] leading-tight text-ink sm:text-4xl">
               {item.degree}
             </h3>
             <p className="mt-2 text-slate">{item.institution}</p>

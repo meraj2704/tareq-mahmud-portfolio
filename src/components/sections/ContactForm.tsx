@@ -36,7 +36,7 @@ export function ContactForm({ content, recipient }: ContactFormProps) {
   return (
     <form onSubmit={handleSubmit}>
       <h3 className="eyebrow text-gold">{content.title}</h3>
-      <div className="mt-8 grid gap-x-8 gap-y-10 sm:grid-cols-2">
+      <div className="mt-8 grid gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10">
         <label className={labelStyles}>
           {content.name.label}
           <input

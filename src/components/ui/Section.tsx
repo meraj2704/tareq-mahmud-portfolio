@@ -43,7 +43,7 @@ export function Section({
     >
       <Container>
         <Rule className={dark ? "bg-white/15" : undefined} />
-        <div className="grid gap-y-6 pt-6 md:grid-cols-12 md:gap-x-8">
+        <div className="grid gap-y-4 pt-6 sm:gap-y-6 md:grid-cols-12 md:gap-x-8">
           <FadeIn className="md:col-span-3">
             <p className={cn("eyebrow", dark ? "text-gold" : "text-slate")}>
               {number} — {heading.eyebrow}
@@ -57,11 +57,11 @@ export function Section({
               dark ? "text-white" : "text-ink",
               display
                 ? "text-[clamp(3.5rem,9vw,8rem)] leading-[0.9]"
-                : "text-5xl leading-[0.95] sm:text-6xl lg:text-7xl",
+                : "text-[clamp(2.25rem,10.5vw,3rem)] leading-[0.95] sm:text-6xl lg:text-7xl",
             )}
           />
         </div>
-        <div className="mt-16 sm:mt-24">{children}</div>
+        <div className="mt-12 sm:mt-24">{children}</div>
       </Container>
     </section>
   );

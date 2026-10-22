@@ -16,6 +16,7 @@ interface PhotoProps {
 }
 
 // Editorial photo: fixed aspect, hairline border, muted until hovered.
+// On mobile it runs edge to edge, and touch screens show it in full color.
 export function Photo({
   image,
   orientation,
@@ -26,7 +27,7 @@ export function Photo({
   return (
     <div
       className={cn(
-        "group relative overflow-hidden rounded-xs border border-mist bg-mist",
+        "group relative overflow-hidden rounded-xs border border-mist bg-mist max-sm:bleed max-sm:rounded-none max-sm:border-0",
         ASPECT[orientation],
         className,
       )}
@@ -37,7 +38,7 @@ export function Photo({
         fill
         preload={preload}
         sizes={sizes}
-        className="object-cover saturate-70 transition-[filter] duration-700 ease-out group-hover:saturate-100"
+        className="object-cover saturate-70 transition-[filter] duration-700 ease-out group-hover:saturate-100 max-sm:saturate-100 [@media(hover:none)]:saturate-100"
       />
     </div>
   );

@@ -7,15 +7,15 @@ export function About({ content }: { content: SiteContent["about"] }) {
 
   return (
     <Section id="about" heading={content}>
-      <div className="grid gap-y-12 md:grid-cols-12 md:gap-x-8">
+      <div className="grid gap-y-10 sm:gap-y-12 md:grid-cols-12 md:gap-x-8">
         <FadeIn className="md:col-span-8 md:col-start-4">
-          <p className="text-2xl leading-snug text-ink sm:text-[1.75rem]">
+          <p className="text-[1.375rem] leading-snug text-ink sm:text-[1.75rem]">
             {lede}
           </p>
           {rest.map((paragraph) => (
             <p
               key={paragraph}
-              className="mt-8 max-w-2xl text-lg leading-relaxed text-slate"
+              className="mt-6 max-w-2xl text-[1.0625rem] leading-relaxed text-slate sm:mt-8 sm:text-lg"
             >
               {paragraph}
             </p>

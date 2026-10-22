@@ -13,10 +13,12 @@ export function Hero({ content }: { content: SiteContent["hero"] }) {
     content;
 
   return (
-    <section id="top" className="bg-paper pt-12 sm:pt-16 lg:pt-20">
+    <section id="top" className="bg-paper pt-10 sm:pt-16 lg:pt-20">
       <Container>
-        <div className="grid gap-y-14 md:grid-cols-12 md:gap-x-8">
-          <div className="md:col-span-7 lg:col-span-8">
+        {/* Mobile flattens the text column so the portrait can sit between
+            the summary and the buttons. */}
+        <div className="flex flex-col sm:grid sm:gap-y-14 md:grid-cols-12 md:gap-x-8">
+          <div className="max-sm:contents md:col-span-7 lg:col-span-8">
             <FadeIn>
               <p className="eyebrow text-slate">{location}</p>
             </FadeIn>
@@ -24,16 +26,21 @@ export function Hero({ content }: { content: SiteContent["hero"] }) {
               as="h1"
               text={name}
               stacked
-              className="font-display mt-8 text-[clamp(4.5rem,13vw,8rem)] leading-[0.86] font-light tracking-[-0.03em] text-ink"
+              className="font-display mt-5 text-[clamp(2.75rem,13.9vw,3.75rem)] leading-[0.86] font-light tracking-[-0.03em] hyphens-none text-ink sm:mt-8 sm:text-[clamp(4.5rem,13vw,8rem)]"
             />
-            <FadeIn delay={0.3} className="mt-12 max-w-md">
+            <FadeIn delay={0.3} className="mt-8 max-w-md sm:mt-12">
               <p className="font-display text-3xl font-normal text-ink italic sm:text-4xl">
                 {role}
               </p>
               <p className="mt-5 text-lg leading-relaxed text-pretty text-slate">
                 {summary}
               </p>
-              <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+            </FadeIn>
+            <FadeIn
+              delay={0.3}
+              className="max-w-md max-sm:order-2 max-sm:mt-8 sm:mt-10"
+            >
+              <div className="flex flex-col gap-3 sm:flex-row">
                 <ButtonLink href={primaryCta.href} download={primaryCta.download}>
                   <Icon name="download" className="size-4" />
                   {primaryCta.label}
@@ -46,12 +53,15 @@ export function Hero({ content }: { content: SiteContent["hero"] }) {
             </FadeIn>
           </div>
 
-          <FadeIn delay={0.15} className="md:col-span-5 lg:col-span-4">
+          <FadeIn
+            delay={0.15}
+            className="max-sm:order-1 max-sm:mt-10 md:col-span-5 lg:col-span-4"
+          >
             <Photo
               image={photo}
               orientation="portrait"
               preload
-              sizes="(min-width: 1024px) 30vw, (min-width: 768px) 40vw, 90vw"
+              sizes="(min-width: 1024px) 30vw, (min-width: 768px) 40vw, (min-width: 640px) 90vw, 100vw"
             />
           </FadeIn>
         </div>
@@ -72,7 +82,7 @@ function KeyFigures({ figures }: { figures: KeyFigure[] }) {
             key={figure.label}
             delay={index * 0.08}
             className={cn(
-              "border-mist py-6 pr-4 sm:py-8",
+              "min-w-0 border-mist py-6 pr-4 sm:py-8",
               // Vertical rules between columns; horizontal between rows on mobile.
               index % 2 === 1 && "border-l pl-5 sm:pl-6",
               index >= 2 && "border-t lg:border-t-0",
@@ -80,7 +90,7 @@ function KeyFigures({ figures }: { figures: KeyFigure[] }) {
             )}
           >
             <dt className="eyebrow text-slate">{figure.label}</dt>
-            <dd className="font-display mt-3 text-3xl leading-tight font-light text-ink sm:text-4xl">
+            <dd className="font-display mt-2 text-2xl leading-tight font-light text-ink sm:mt-3 sm:text-4xl">
               {figure.value}
             </dd>
             {figure.detail && (
