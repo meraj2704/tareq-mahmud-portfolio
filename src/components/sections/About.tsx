@@ -6,7 +6,7 @@ export function About({ content }: { content: SiteContent["about"] }) {
   const [lede, ...rest] = content.paragraphs;
 
   return (
-    <Section id="about" heading={content}>
+    <Section id="about" heading={content} tone="cream">
       <div className="grid gap-y-10 sm:gap-y-12 md:grid-cols-12 md:gap-x-8">
         <FadeIn className="md:col-span-8 md:col-start-4">
           <p className="text-[1.375rem] leading-snug text-ink sm:text-[1.75rem]">

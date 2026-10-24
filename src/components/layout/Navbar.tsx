@@ -85,6 +85,7 @@ export function Navbar({ brand, content, channels, cv }: NavbarProps) {
     <>
       <header
         data-navbar
+        data-tone="paper"
         className={cn(
           "sticky top-0 z-50 border-b bg-paper pt-[env(safe-area-inset-top)] transition-colors duration-300",
           scrolled || open
@@ -227,6 +228,7 @@ function MobileMenu({
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
       data-lenis-prevent
+      data-tone="ink"
       className="fixed inset-0 z-60 overflow-y-auto overscroll-contain bg-ink text-white lg:hidden"
     >
       <div className="flex min-h-svh flex-col pt-[env(safe-area-inset-top)] pb-[max(1.5rem,env(safe-area-inset-bottom))]">

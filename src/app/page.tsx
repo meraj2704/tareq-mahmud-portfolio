@@ -9,6 +9,7 @@ import { Experience } from "@/components/sections/Experience";
 import { Hero } from "@/components/sections/Hero";
 import { Research } from "@/components/sections/Research";
 import { Skills } from "@/components/sections/Skills";
+import { GrowthLine } from "@/components/ui/GrowthLine";
 
 export default function Home() {
   const content = getContent();
@@ -21,8 +22,10 @@ export default function Home() {
         channels={content.contact.channels}
         cv={content.hero.primaryCta}
       />
-      <main>
-        <Hero content={content.hero} />
+      {/* Relative so the growth line can be measured and drawn across it. */}
+      <main className="relative">
+        <GrowthLine />
+        <Hero content={content.hero} numberLocale={content.meta.numberLocale} />
         <About content={content.about} />
         <Experience content={content.experience} />
         <Education content={content.education} />

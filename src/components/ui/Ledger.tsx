@@ -1,13 +1,19 @@
 import type { ReactNode } from "react";
 import { FadeIn } from "./FadeIn";
-import { Rule } from "./Rule";
+import { DoubleRule, Rule } from "./Rule";
+
+interface LedgerProps {
+  // Close the list as a total, with an accounting double rule.
+  total?: boolean;
+  children: ReactNode;
+}
 
 // A list of ledger rows, closed by a final rule.
-export function Ledger({ children }: { children: ReactNode }) {
+export function Ledger({ total = false, children }: LedgerProps) {
   return (
     <div>
       {children}
-      <Rule />
+      {total ? <DoubleRule /> : <Rule />}
     </div>
   );
 }

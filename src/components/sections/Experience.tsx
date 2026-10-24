@@ -11,8 +11,8 @@ export function Experience({
   content: SiteContent["experience"];
 }) {
   return (
-    <Section id="experience" heading={content}>
-      <Ledger>
+    <Section id="experience" heading={content} tone="paper">
+      <Ledger total>
         {content.items.map((item) => (
           <LedgerRow
             key={`${item.company}-${item.period}`}

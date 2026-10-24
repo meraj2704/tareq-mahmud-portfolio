@@ -6,7 +6,7 @@ export function Footer({ content }: { content: SiteContent["footer"] }) {
   const { credit } = content;
 
   return (
-    <footer className="bg-ink text-white">
+    <footer data-tone="ink" className="bg-ink text-white">
       <Container className="border-t border-white/15 pt-12 pb-[calc(3rem+env(safe-area-inset-bottom))] text-center">
         <span className="mx-auto block h-px w-10 bg-gold" aria-hidden="true" />
         <p className="font-display mt-6 text-2xl">{content.name}</p>
@@ -21,7 +21,9 @@ export function Footer({ content }: { content: SiteContent["footer"] }) {
               href={credit.href}
               target="_blank"
               rel="noopener"
-              className="text-gold underline-offset-4 hover:underline focus-visible:underline"
+              // The pseudo-element widens the tap area to 44px+ without
+              // changing the layout.
+              className="relative text-gold underline-offset-4 after:absolute after:-inset-x-2 after:-inset-y-3.5 hover:underline focus-visible:underline"
             >
               {credit.label}
             </a>

@@ -24,3 +24,28 @@ export function Rule({ className, delay = 0 }: RuleProps) {
     />
   );
 }
+
+// An accounting double rule closing a total: two 1px lines, 3px apart,
+// drawing in from left to right. Shown at once with reduced motion.
+export function DoubleRule({ className, delay = 0 }: RuleProps) {
+  const mobile = useIsMobile();
+  const duration = mobile ? 0.4 : 0.6;
+
+  return (
+    <div aria-hidden="true" className="flex flex-col gap-[3px]">
+      {[0, 0.12].map((stagger) => (
+        <motion.div
+          key={stagger}
+          className={cn(
+            "h-px origin-left bg-gold-deep motion-reduce:transform-none!",
+            className,
+          )}
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration, ease: "easeOut", delay: delay + stagger }}
+        />
+      ))}
+    </div>
+  );
+}

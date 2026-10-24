@@ -20,9 +20,41 @@ export interface ImageAsset {
   alt: string;
 }
 
+export interface VideoSources {
+  webm: string;
+  mp4: string;
+}
+
+// A silent looping clip that stands in for a still portrait. Encode it with
+// scripts/encode-hero-portrait.sh; the poster is the loop's first frame.
+export interface PortraitVideo {
+  poster: ImageAsset;
+  // 384x480, below md.
+  small: VideoSources;
+  // 576x720, md and up.
+  large: VideoSources;
+}
+
+// A faint grayscale loop behind the hero copy. Encode it with
+// scripts/encode-hero-background.sh; the poster is the loop's first frame.
+// Decorative, so no alt text.
+export interface BackgroundVideo {
+  poster: { webp: string; jpg: string };
+  // 404x720 (9:16), below md.
+  small: VideoSources;
+  // 1280x720 (16:9), md and up.
+  large: VideoSources;
+}
+
 export interface KeyFigure {
   label: string;
   value: string;
+  // True when `value` is a pure number (e.g. "12"): it counts up and gets a
+  // sparkline. Text and years in a phrase ("Since 2025") stay static.
+  numeric: boolean;
+  // Static text around the value, e.g. value "98" with suffix "%".
+  prefix?: string;
+  suffix?: string;
   detail?: string;
 }
 
@@ -76,6 +108,8 @@ export interface SiteContent {
   meta: {
     title: string;
     description: string;
+    // BCP 47 tag for number formatting (digits, thousands separators).
+    numberLocale: string;
   };
   nav: {
     items: { id: SectionId; label: string }[];
@@ -89,6 +123,10 @@ export interface SiteContent {
     location: string;
     summary: string;
     photo: ImageAsset;
+    // Replaces `photo` when set.
+    video?: PortraitVideo;
+    // Behind the whole hero, under the copy and the portrait.
+    background?: BackgroundVideo;
     primaryCta: { label: string; href: string; download: string };
     secondaryCta: { label: string; href: string };
     figures: KeyFigure[];
@@ -140,6 +178,7 @@ const en: SiteContent = {
     title: "Tareq Mahmud — Accountant",
     description:
       "Tareq Mahmud is an accountant based in Dhaka, focused on accurate bookkeeping, financial reporting and well-organized records.",
+    numberLocale: "en-US",
   },
   nav: {
     items: [
@@ -164,6 +203,11 @@ const en: SiteContent = {
       src: "/tareq-mahmud-portrait.png",
       alt: "Portrait of Tareq Mahmud in a navy suit and tie",
     },
+    background: {
+      poster: { webp: "/hero/bg-poster.webp", jpg: "/hero/bg-poster.jpg" },
+      small: { webm: "/hero/bg-720.webm", mp4: "/hero/bg-720.mp4" },
+      large: { webm: "/hero/bg-1280.webm", mp4: "/hero/bg-1280.mp4" },
+    },
     primaryCta: {
       label: "Download CV",
       href: "/cv.pdf",
@@ -174,11 +218,17 @@ const en: SiteContent = {
       {
         label: "Experience",
         value: "Since 2025",
+        numeric: false,
         detail: "Accountant, ITALBANGLA HRD LTD",
       },
-      { label: "Education", value: "MBA", detail: "Accounting, in progress" },
-      { label: "Location", value: "Dhaka", detail: "Bangladesh" },
-      { label: "Languages", value: "Bangla, English" },
+      {
+        label: "Education",
+        value: "MBA",
+        numeric: false,
+        detail: "Accounting, in progress",
+      },
+      { label: "Location", value: "Dhaka", numeric: false, detail: "Bangladesh" },
+      { label: "Languages", value: "Bangla, English", numeric: false },
     ],
   },
   about: {

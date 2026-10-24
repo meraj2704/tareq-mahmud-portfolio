@@ -9,7 +9,7 @@ export function Certifications({
   content: SiteContent["certifications"];
 }) {
   return (
-    <Section id="certifications" heading={content}>
+    <Section id="certifications" heading={content} tone="paper">
       <Ledger>
         {content.items.map((item, index) => (
           <LedgerRow

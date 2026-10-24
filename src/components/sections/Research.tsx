@@ -4,7 +4,7 @@ import { Section } from "@/components/ui/Section";
 
 export function Research({ content }: { content: SiteContent["research"] }) {
   return (
-    <Section id="research" heading={content}>
+    <Section id="research" heading={content} tone="cream">
       <Ledger>
         {content.items.map((item) => (
           <LedgerRow

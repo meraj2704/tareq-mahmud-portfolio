@@ -9,6 +9,12 @@
   --color-mist: #e4e6ea;
   --color-slate: #5a6472;
   --color-gold: #c9a96e;
+  /* Second dark surface. */
+  --color-emerald: #0f4c3a;
+  /* Warm alternate light surface. */
+  --color-cream: #efe7d6;
+  /* Gold for light backgrounds: large text and italic words only. */
+  --color-gold-deep: #9c7a3c;
   --color-transparent: transparent;
   --color-current: currentColor;
 }
@@ -32,6 +38,28 @@
   font-family: var(--font-fraunces), ui-serif, Georgia, serif;
   font-optical-sizing: auto;
   font-variation-settings: "SOFT" 50;
+}
+
+/* Outlined display type; set the stroke with a text color. */
+@utility text-outline {
+  -webkit-text-stroke: 1px currentColor;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Soft radial gold light, fading out at the box edges. */
+@utility glow-gold {
+  background: radial-gradient(
+    closest-side,
+    color-mix(in oklab, var(--color-gold) 45%, transparent),
+    transparent
+  );
+}
+
+/* Fine paper grain, tiled from an inline SVG noise filter. */
+@utility grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  opacity: 0.04;
 }
 
 /* Side gutter that also clears notches in landscape (viewport-fit=cover). */

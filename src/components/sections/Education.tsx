@@ -5,7 +5,7 @@ import { cn } from "@/lib/cn";
 
 export function Education({ content }: { content: SiteContent["education"] }) {
   return (
-    <Section id="education" heading={content}>
+    <Section id="education" heading={content} tone="paper">
       <Ledger>
         {content.items.map((item) => (
           <LedgerRow

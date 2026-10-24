@@ -15,6 +15,14 @@ const variants: Record<Variant, string> = {
   inverse: "bg-paper text-ink hover:bg-gold focus-visible:outline-gold",
 };
 
+// The surface each variant paints, for the cursor tick's color lookup.
+// Secondary is see-through, so it takes the section's tone.
+const tones: Record<Variant, string | undefined> = {
+  primary: "ink",
+  secondary: undefined,
+  inverse: "paper",
+};
+
 const sizes: Record<Size, string> = {
   md: "h-12 px-6",
   sm: "h-9 px-4",
@@ -39,7 +47,11 @@ export function ButtonLink({
   ...props
 }: StyleProps & AnchorHTMLAttributes<HTMLAnchorElement>) {
   return (
-    <a className={cn(buttonStyles({ variant, size }), className)} {...props} />
+    <a
+      data-tone={tones[variant ?? "primary"]}
+      className={cn(buttonStyles({ variant, size }), className)}
+      {...props}
+    />
   );
 }
 
@@ -53,6 +65,7 @@ export function Button({
   return (
     <button
       type={type}
+      data-tone={tones[variant ?? "primary"]}
       className={cn(buttonStyles({ variant, size }), className)}
       {...props}
     />

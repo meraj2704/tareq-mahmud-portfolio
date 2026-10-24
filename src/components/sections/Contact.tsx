@@ -20,7 +20,7 @@ function breakBeforeAt(value: string) {
 
 export function Contact({ content }: { content: SiteContent["contact"] }) {
   return (
-    <Section id="contact" heading={content} tone="ink" display>
+    <Section id="contact" heading={content} tone="ink" display glow>
       <div className="grid gap-y-14 sm:gap-y-16 md:grid-cols-12 md:gap-x-8">
         <FadeIn className="md:col-span-5">
           <p className="max-w-md text-lg leading-relaxed text-white/70">

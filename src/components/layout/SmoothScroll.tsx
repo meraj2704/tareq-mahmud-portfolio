@@ -67,8 +67,9 @@ function usePrefersReducedMotion() {
   );
 }
 
-// Lenis smooths wheel scrolling only; touch keeps native scrolling. Off for
-// visitors who prefer reduced motion.
+// Lenis smooths wheel scrolling only; touch keeps native scrolling, momentum
+// included (syncTouch off). In-page links and the mobile menu still scroll
+// through it. Off for visitors who prefer reduced motion.
 export function SmoothScroll({ children }: { children: ReactNode }) {
   const lenis = useRef<Lenis | null>(null);
   const reducedMotion = usePrefersReducedMotion();
