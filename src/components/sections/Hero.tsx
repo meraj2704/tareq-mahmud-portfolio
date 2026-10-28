@@ -50,7 +50,7 @@ export function Hero({ content, numberLocale }: HeroProps) {
             </FadeIn>
             <HeroName
               text={name}
-              className="mt-5 text-[clamp(2.75rem,13.9vw,3.75rem)] leading-[0.86] font-light tracking-[-0.03em] hyphens-none text-ink sm:mt-8 sm:text-[clamp(4.5rem,13vw,7.5rem)] lg:text-[8rem]"
+              className="mt-5 text-[clamp(3.5rem,21vw,5.5rem)] leading-[0.86] font-light tracking-[-0.03em] hyphens-none text-ink sm:mt-8 sm:text-[clamp(4.5rem,13vw,7.5rem)] lg:text-[8rem]"
             />
             <FadeIn delay={0.3} className="mt-8 max-w-md sm:mt-12">
               <p className="font-display text-3xl font-normal text-gold-deep italic sm:text-4xl">
@@ -66,12 +66,12 @@ export function Hero({ content, numberLocale }: HeroProps) {
             >
               <div className="flex flex-col gap-3 sm:flex-row">
                 <ButtonLink href={primaryCta.href} download={primaryCta.download}>
-                  <Icon name="download" className="size-4" />
+                  <Icon name="download" className="size-4 group-hover:translate-y-0.5" />
                   {primaryCta.label}
                 </ButtonLink>
                 <ButtonLink href={secondaryCta.href} variant="secondary">
                   {secondaryCta.label}
-                  <Icon name="arrowRight" className="size-4" />
+                  <Icon name="arrowRight" className="size-4 group-hover:translate-x-1" />
                 </ButtonLink>
               </div>
             </FadeIn>
@@ -98,6 +98,7 @@ export function Hero({ content, numberLocale }: HeroProps) {
                   image={photo}
                   orientation="portrait"
                   preload
+                  settle
                   sizes={PORTRAIT_SIZES}
                 />
               )}
@@ -147,7 +148,7 @@ function KeyFigures({
                   />
                 )}
               </dt>
-              <dd className="font-display mt-2 text-2xl leading-tight font-light text-gold-deep sm:mt-3 sm:text-4xl">
+              <dd className="font-display mt-2 text-2xl leading-tight font-light text-gold-deep tabular-nums sm:mt-3 sm:text-4xl">
                 {numeric ? (
                   <CountUp
                     value={figure.value}

@@ -3,6 +3,7 @@
 import { animate, useInView } from "framer-motion";
 import { Fragment, useEffect, useRef } from "react";
 import { cn } from "@/lib/cn";
+import { EASE_OUT } from "@/lib/motion";
 import { MOBILE_QUERY } from "@/lib/useIsMobile";
 
 interface RevealTextProps {
@@ -62,7 +63,7 @@ export function RevealText({
       animate(
         heading,
         { opacity: [0, 1], y: [12, 0] },
-        { duration: 0.4, ease: "easeOut" },
+        { duration: 0.5, ease: EASE_OUT },
       );
       return;
     }
@@ -72,9 +73,9 @@ export function RevealText({
         word,
         { y: "0%" },
         {
-          duration: reduceMotion ? 0 : mobile ? 0.4 : 0.6,
+          duration: reduceMotion ? 0 : mobile ? 0.6 : 1,
           delay: reduceMotion ? 0 : lines[index] * (mobile ? 0.08 : 0.1),
-          ease: "easeOut",
+          ease: EASE_OUT,
         },
       );
     });

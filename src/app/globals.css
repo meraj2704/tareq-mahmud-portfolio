@@ -17,6 +17,18 @@
   --color-gold-deep: #9c7a3c;
   --color-transparent: transparent;
   --color-current: currentColor;
+
+  /* A long, settling ease-out; mirrored as EASE_OUT in lib/motion.ts. */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Hero portrait eases back from a slight zoom on load. */
+  --animate-settle: settle 1.8s var(--ease-out) both;
+
+  @keyframes settle {
+    from {
+      scale: 1.08;
+    }
+  }
 }
 
 @theme inline {
@@ -38,6 +50,13 @@
   font-family: var(--font-fraunces), ui-serif, Georgia, serif;
   font-optical-sizing: auto;
   font-variation-settings: "SOFT" 50;
+  font-variant-numeric: lining-nums;
+}
+
+/* Two hairlines, like the double underline under a ledger total. */
+@utility double-rule {
+  height: 3px;
+  border-block: 1px solid currentColor;
 }
 
 /* Outlined display type; set the stroke with a text color. */
@@ -106,6 +125,36 @@ body {
   color: var(--color-slate);
   /* clip, not hidden, so the sticky header keeps working. */
   overflow-x: clip;
+}
+
+/* Ink behind the lower half of the viewport, under every section's own
+   background, so the bounce past the ink footer on iOS stays ink instead
+   of flashing paper. The top half stays clear, showing paper above the
+   navbar. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 50% 0 0;
+  z-index: -1;
+  background: var(--color-ink);
+}
+
+/* Fine paper grain over everything, the mobile menu included. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media print {
+  body::after {
+    display: none;
+  }
 }
 
 /* Lenis recommended styles. */

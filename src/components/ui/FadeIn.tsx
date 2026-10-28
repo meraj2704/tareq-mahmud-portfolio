@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
+import { EASE_OUT } from "@/lib/motion";
 import { useIsMobile } from "@/lib/useIsMobile";
 
 interface FadeInProps {
@@ -24,9 +25,9 @@ export function FadeIn({ children, className, delay = 0 }: FadeInProps) {
       whileInView={{ opacity: 1, "--fade-y": "0px" }}
       viewport={{ once: true, amount: 0.15 }}
       transition={{
-        duration: mobile ? 0.4 : 0.6,
+        duration: mobile ? 0.5 : 0.9,
         delay: mobile ? delay * 0.6 : delay,
-        ease: "easeOut",
+        ease: EASE_OUT,
       }}
     >
       {children}

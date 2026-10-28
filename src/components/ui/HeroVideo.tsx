@@ -36,7 +36,13 @@ export function HeroVideo({ video, sizes }: HeroVideoProps) {
   }, [reducedMotion, small, large]);
 
   return (
-    <Photo image={video.poster} orientation="portrait" preload sizes={sizes}>
+    <Photo
+      image={video.poster}
+      orientation="portrait"
+      preload
+      settle
+      sizes={sizes}
+    >
       {sources && !reducedMotion && <LoopVideo sources={sources} />}
     </Photo>
   );

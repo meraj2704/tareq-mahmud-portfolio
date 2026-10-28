@@ -74,7 +74,7 @@ export function ContactForm({ content, recipient }: ContactFormProps) {
         <p className="max-w-xs text-sm text-white/50">{content.note}</p>
         <Button type="submit" variant="inverse" className="shrink-0">
           {content.submit}
-          <Icon name="arrowRight" className="size-4" />
+          <Icon name="arrowRight" className="size-4 group-hover:translate-x-1" />
         </Button>
       </div>
     </form>

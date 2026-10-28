@@ -30,13 +30,24 @@ const jetbrainsMono = JetBrains_Mono({
 const { meta } = getContent();
 
 export const metadata: Metadata = {
+  // Absolute URLs for the share image. Set SITE_URL to the live domain;
+  // without it Next falls back to the Vercel production URL or localhost.
+  metadataBase: process.env.SITE_URL ? new URL(process.env.SITE_URL) : undefined,
   title: meta.title,
   description: meta.description,
+  openGraph: {
+    type: "profile",
+    title: meta.title,
+    description: meta.description,
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 // Lets the page draw under notches; components pad with env(safe-area-inset-*).
+// themeColor tints the mobile browser bar to match the paper background.
 export const viewport: Viewport = {
   viewportFit: "cover",
+  themeColor: "#f7f6f2",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
