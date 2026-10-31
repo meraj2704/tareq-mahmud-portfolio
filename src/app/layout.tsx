@@ -27,7 +27,7 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "700"],
 });
 
-const { meta } = getContent();
+const { meta, hero } = getContent();
 
 export const metadata: Metadata = {
   // Absolute URLs for the share image. Set SITE_URL to the live domain;
@@ -35,6 +35,11 @@ export const metadata: Metadata = {
   metadataBase: process.env.SITE_URL ? new URL(process.env.SITE_URL) : undefined,
   title: meta.title,
   description: meta.description,
+  // Stops iOS from restyling numbers (dates, years) as blue phone links;
+  // the explicit tel: links still work.
+  formatDetection: { telephone: false, address: false, email: false },
+  // Name under the icon when saved to an iPhone home screen.
+  appleWebApp: { title: hero.name, statusBarStyle: "default" },
   openGraph: {
     type: "profile",
     title: meta.title,

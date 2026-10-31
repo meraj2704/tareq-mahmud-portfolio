@@ -44,6 +44,8 @@ export function ContactForm({ content, recipient }: ContactFormProps) {
             type="text"
             required
             autoComplete="name"
+            autoCapitalize="words"
+            enterKeyHint="next"
             placeholder={content.name.placeholder}
             className={fieldStyles}
           />
@@ -55,6 +57,9 @@ export function ContactForm({ content, recipient }: ContactFormProps) {
             type="email"
             required
             autoComplete="email"
+            autoCapitalize="none"
+            spellCheck={false}
+            enterKeyHint="next"
             placeholder={content.email.placeholder}
             className={fieldStyles}
           />

@@ -31,6 +31,13 @@
   }
 }
 
+/* Short viewports: phones in landscape. */
+@custom-variant short {
+  @media (height < 30rem) {
+    @slot;
+  }
+}
+
 @theme inline {
   --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;

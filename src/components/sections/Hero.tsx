@@ -34,10 +34,12 @@ export function Hero({ content, numberLocale }: HeroProps) {
   } = content;
 
   return (
+    // overflow-x-clip trims the portrait's glow at the screen edges; without
+    // it the page is wider than the viewport and drifts sideways on touch.
     <section
       id="top"
       data-tone="paper"
-      className="relative isolate bg-paper pt-10 sm:pt-16 lg:pt-20"
+      className="relative isolate overflow-x-clip bg-paper pt-10 sm:pt-16 lg:pt-20"
     >
       {background && <HeroBackground background={background} />}
       <Container className="relative z-10">
@@ -50,7 +52,7 @@ export function Hero({ content, numberLocale }: HeroProps) {
             </FadeIn>
             <HeroName
               text={name}
-              className="mt-5 text-[clamp(3.5rem,21vw,5.5rem)] leading-[0.86] font-light tracking-[-0.03em] hyphens-none text-ink sm:mt-8 sm:text-[clamp(4.5rem,13vw,7.5rem)] lg:text-[8rem]"
+              className="mt-5 text-[clamp(3.5rem,21vw,5.5rem)] leading-[0.86] font-light tracking-[-0.03em] hyphens-none text-ink sm:mt-8 sm:text-[clamp(4.5rem,min(13vw,24svh),7.5rem)] lg:text-[8rem]"
             />
             <FadeIn delay={0.3} className="mt-8 max-w-md sm:mt-12">
               <p className="font-display text-3xl font-normal text-gold-deep italic sm:text-4xl">

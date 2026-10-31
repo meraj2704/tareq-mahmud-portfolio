@@ -382,9 +382,10 @@ function MobileMenu({
           </button>
         </Container>
 
-        <Container className="flex flex-1 flex-col justify-between gap-10 pt-8">
+        <Container className="flex flex-1 flex-col justify-between gap-10 pt-8 short:gap-6 short:pt-4">
           <nav>
-            <ul>
+            {/* Two columns on a phone in landscape, so the links fit. */}
+            <ul className="short:columns-2 short:gap-x-8">
               {/* Each line masks its link; the section in view is set in
                   italic and keeps a gold number while the others dim. */}
               {items.map((item, index) => (
@@ -411,7 +412,7 @@ function MobileMenu({
                     </span>
                     <span
                       className={cn(
-                        "font-display text-[clamp(2rem,9vw,2.75rem)] leading-[1.1] font-light tracking-[-0.02em] text-white transition-colors group-active:text-gold",
+                        "font-display text-[clamp(2rem,9vw,2.75rem)] leading-[1.1] font-light short:text-[1.75rem] tracking-[-0.02em] text-white transition-colors group-active:text-gold",
                         item.id === active && "italic",
                       )}
                     >

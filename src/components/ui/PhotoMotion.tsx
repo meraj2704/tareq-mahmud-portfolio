@@ -1,10 +1,11 @@
 "use client";
 
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, type ReactNode } from "react";
 import { cn } from "@/lib/cn";
 import { EASE_OUT } from "@/lib/motion";
 import { useIsMobile } from "@/lib/useIsMobile";
+import { REDUCED_MOTION_QUERY, useMediaQuery } from "@/lib/useMediaQuery";
 
 // Fills a photo frame and moves the photo within it.
 // - Wider screens: the photo drifts a few percent against the scroll,
@@ -16,7 +17,9 @@ import { useIsMobile } from "@/lib/useIsMobile";
 export function PhotoMotion({ children }: { children: ReactNode }) {
   const frame = useRef<HTMLDivElement>(null);
   const mobile = useIsMobile();
-  const reducedMotion = useReducedMotion();
+  // Hydration-safe: framer's useReducedMotion reads the query on the first
+  // client render, so the server's drift classes mismatched.
+  const reducedMotion = useMediaQuery(REDUCED_MOTION_QUERY, true);
   const { scrollYProgress } = useScroll({
     target: frame,
     offset: ["start end", "end start"],
